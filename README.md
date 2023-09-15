@@ -1,3 +1,3 @@
-# b7a6-ai-universe-assignment-tanveer19
-
 Assignment 6
+
+https://github.com/tanveer19/A06-universe
