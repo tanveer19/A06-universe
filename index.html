@@ -11,6 +11,10 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
     <header class="text-center">
@@ -89,6 +93,7 @@
         const url = `https://openapi.programming-hero.com/api/ai/tools`;
         const res = await fetch(url);
         const data = await res.json();
+        console.log(data.data.tools);
         displayAi(data.data.tools);
       };
 
@@ -109,8 +114,10 @@
           const aiDiv = document.createElement("div");
           aiDiv.classList.add("col");
           aiDiv.innerHTML = ` 
-        <div class="card p-4">
-            <img src="${ai.image}" class="card-img-top" alt="..." />
+     <div class="card p-4">
+            <img src="${ai.image}" class="card-img-top" alt="..." 
+            onerror ="this.src='https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg' "
+            />
             <div class="card-body">
               <h5 class="card-title text-start">Features</h5>
               <ol class="text-start">
@@ -119,13 +126,26 @@
                 <li>${ai.features[2]}</li>
               </ol>
               <hr>
-              <h5 class="card-title text-start">${ai.name}</h5>
-              <p class="text-start">${ai.published_in}</p>
-            </div>
-            <!-- Button trigger modal -->
-            <button onclick="loadAiDetails('${ai.id}')" href="#" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aiDetailModal">
-            >
-            </button>
+              <div class="d-flex justify-content-between">
+
+              <div> 
+                 <h5 class="card-title text-start">${ai.name}</h5>
+       
+              <p class="text-start">  <i class="fa-regular fa-calendar"></i> ${ai.published_in}</p>
+
+                </div>
+             
+                
+                <!-- Button trigger modal -->
+                
+                <button onclick="loadAiDetails('${ai.id}')" href="#" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#aiDetailModal">
+                  <i class="fa-solid fa-arrow-right rounded-circle"
+                  style="color: #f4a7a7; background-color: #fef7f7; width:40px; height:30px; padding:5px; "></i>
+                </button>
+              </div>
+
+              
+              </div>
         </div>
         `;
           aisContainer.appendChild(aiDiv);
@@ -165,5 +185,9 @@
       };
       loadAi();
     </script>
+    <script
+      src="https://kit.fontawesome.com/c5b8b41db0.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
