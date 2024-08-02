@@ -96,12 +96,12 @@
     <!-- custom JS -->
 
     <script>
-      const loadAi = async (dataLimit) => {
+      const loadAi = async (dataLimit = true) => {
         const url = `https://openapi.programming-hero.com/api/ai/tools`;
         const res = await fetch(url);
         const data = await res.json();
         console.log(data.data.tools);
-        displayAi(data.data.tools);
+        displayAi(data.data.tools, dataLimit);
       };
 
       const displayAi = (ais, dataLimit) => {
@@ -124,14 +124,14 @@
          <div class="card p-4">
             <img src="${ai.image}" class="card-img-top" alt="..." 
             onerror ="this.src='https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg' "
-            style="height: 150px; object-fit: cover; width: 100%;"
+            style="height: 200px; object-fit: cover; width: 100%;"
             />
             <div class="card-body">
               <h5 class="card-title text-start"
               >Features</h5>
 
               <ol class="text-start"
-              style="height:150px;"
+              style="height:100px;"
               
               >
                 <li>${ai.features[0]}</li>
@@ -153,7 +153,8 @@
                 
                 <button onclick="loadAiDetails('${ai.id}')" href="#" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#aiDetailModal">
                   <i class="fa-solid fa-arrow-right rounded-circle"
-                  style="color: #f4a7a7; background-color: #fef7f7; width:40px; height:30px; padding:5px; "></i>
+                  style="color: #f4a7a7; background-color: #fef7f7; 
+                  font-size: 16px; padding:10px; "></i>
                 </button>
               </div>
 
