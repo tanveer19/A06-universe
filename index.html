@@ -27,14 +27,14 @@
     </header>
     <main>
       <!-- showing AI -->
-      <section class="container text-center">
+      <section class="container text-center my-4">
         <div
           id="ai-container"
           class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4"
         ></div>
         <!-- show all button -->
         <div id="show-all" class="text-center d-none">
-          <div id="btn-show-all" class="btn btn-danger mb-4">See more</div>
+          <div id="btn-show-all" class="btn btn-danger my-4">See more</div>
         </div>
       </section>
       <!-- loader -->
@@ -96,16 +96,20 @@
     <!-- custom JS -->
 
     <script>
+      let aiData = [];
+
       const loadAi = async (dataLimit = true) => {
         const url = `https://openapi.programming-hero.com/api/ai/tools`;
         const res = await fetch(url);
         const data = await res.json();
-        console.log(data.data.tools);
-        displayAi(data.data.tools, dataLimit);
+        aiData = data.data.tools;
+        console.log(aiData);
+        displayAi(aiData, dataLimit);
       };
 
       const displayAi = (ais, dataLimit) => {
         const aisContainer = document.getElementById("ai-container");
+        aisContainer.innerHTML = "";
 
         // display 6 ais only
         const showAll = document.getElementById("show-all");
@@ -174,10 +178,13 @@
           loaderSection.classList.add("d-none");
         }
       };
+
       // load show all
       document
         .getElementById("btn-show-all")
-        .addEventListener("click", function () {});
+        .addEventListener("click", function () {
+          displayAi(aiData, false);
+        });
 
       //single data
       const loadAiDetails = async (id) => {
